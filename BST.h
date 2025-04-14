@@ -32,6 +32,7 @@ private:
   BSTNode<Key,E>* removehelp(BSTNode<Key, E>*, const Key&);
   E* findhelp(BSTNode<Key, E>*, const Key&) const;
   void printhelp(BSTNode<Key, E>*, int) const;
+  void printPostHelp(BSTNode<Key, E>*, int) const;
   void visit(BSTNode<Key, E>*) const;
 
 public:
@@ -92,6 +93,13 @@ public:
     else printhelp(root, 0);
   }
   
+  // add post order function
+  void printPostOrder() const { // Print the contents of the BST
+    if (root == NULL) cout << "The BST is empty.\n";
+    else printPosthelp(root, 0);
+    
+}
+
 };
 
 // Visit -- prints out root
@@ -196,4 +204,13 @@ printhelp(BSTNode<Key, E>* root, int level) const {
   printhelp(root->left(), level+1);   // Do left subtree
   visit(root);						  // Print node value
   printhelp(root->right(), level+1);  // Do right subtree
+}
+
+template <typename Key, typename E>
+  void BST<Key, E>::
+  printPostHelp(BSTNode<Key, E>* root, int level) const {
+    if (root == NULL) return;           // Empty tree
+    printhelp(root->left(), level+1);   // Do left subtree						  
+    printhelp(root->right(), level+1);  // Do right subtree
+    visit(root); // Print node value
 }
