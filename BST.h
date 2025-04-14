@@ -96,7 +96,7 @@ public:
   // add post order function
   void printPostOrder() const { // Print the contents of the BST
     if (root == NULL) cout << "The BST is empty.\n";
-    else printPosthelp(root, 0);
+    else printPostHelp(root, 0);
     
 }
 
